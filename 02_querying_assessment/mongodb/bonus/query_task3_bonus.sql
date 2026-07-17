@@ -18,3 +18,7 @@
 --
 -- Your thinking:
 --
+
+select name , stock_level from ingredients
+where stock_level >= 100
+ORDER by stock_level ASC

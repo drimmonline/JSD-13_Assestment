@@ -18,3 +18,5 @@
 --
 -- Your thinking:
 --
+
+SELECT  SUM(total_price) as total_revenue FROM orders

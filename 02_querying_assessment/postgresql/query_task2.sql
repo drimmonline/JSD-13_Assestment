@@ -17,4 +17,9 @@
 -- Write in English or Thai. Do not skip this step.
 --
 -- Your thinking:
+--   มองหา table staff จากนั้นเอาชื่อ นามสกุล มา แสดง จากนั้น ค้นหา Role = "Cook " แล้วเอาข้อมูลมาโชว
 --
+
+SELECT first_name,last_name, role
+FROM staff
+WHERE role = 'Cook';

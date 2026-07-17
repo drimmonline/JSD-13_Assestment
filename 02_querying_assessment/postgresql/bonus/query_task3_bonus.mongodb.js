@@ -19,4 +19,18 @@
 // Write in English or Thai. Do not skip this step.
 //
 // Your thinking:
+//ผมจะ aggregate  collection order โดยใช้ lookup แต่ข้อมูล return ออกมาเป็น [] ใน field ใหม่ เลยไม่ได้ทำต่อครับ
 //
+use("chrome-burger-db");
+db.orders.find();
+
+db.orders.aggregate([
+  {
+    $lookup: {
+      from: "staff",
+      localField: "staff.staff_id",
+      foreignField: "_id",
+      as: "staff_full_details",
+    },
+  },
+]);

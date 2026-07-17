@@ -18,3 +18,24 @@
 //
 // Your thinking:
 //
+
+use("chrome-burger-db");
+
+db.menu_items.aggregate([
+  {
+    $group: {
+      _id: "$_id",
+      name: { $first: "$name" },
+      category: { $first: "Side" },
+      price: { $first: "$price" },
+    },
+  },
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      price: 1,
+      category: 1,
+    },
+  },
+]);

@@ -19,3 +19,7 @@
 --
 -- Your thinking:
 --
+
+select o.order_date , o.total_price from staff s
+LEFT JOIN Orders o ON  o.order_id = s.staff_id
+where first_name = 'Jane' And last_name = 'Doe'

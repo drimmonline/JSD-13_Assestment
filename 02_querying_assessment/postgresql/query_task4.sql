@@ -17,4 +17,13 @@
 -- Write in English or Thai. Do not skip this step.
 --
 -- Your thinking:
+   -- จอยหาค่าระหว่าง  ingredient กับ supplier ที่ มี ค่า เดียวกัน ว่า มี ส่วนผสมอะไรบ้าง จาก supplier 'Freshest Farm Produce'
 --
+
+SELECT ingredients.name as Ingredients_name , suppliers.name as supplier_name
+FROM ingredients
+LEFT JOIN suppliers ON suppliers.supplier_id = ingredients.supplier_id
+WHERE suppliers.name = 'Freshest Farm Produce';
+
+-- SELECT * from suppliers
+-- WHERE name ='Freshest Farm Produce'

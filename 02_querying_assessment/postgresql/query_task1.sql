@@ -17,4 +17,10 @@
 -- Write in English or Thai. Do not skip this step.
 --
 -- Your thinking:
+-- ผมมองหา Table แต่ละ table ที่มี field  name ,price , category ปรากฎว่าอยู่ ใน table menuitems จากนั้น ก็ field ข้อมูลออกมาตามโจทย์
+-- หา name price ที่อยู่ใน หมวดหมู่ 'side'
 --
+
+SELECT name , price ,category
+FROM menuitems
+WHERE category = 'Side'; 

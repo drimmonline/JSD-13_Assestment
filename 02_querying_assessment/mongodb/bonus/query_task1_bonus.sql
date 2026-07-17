@@ -18,3 +18,6 @@
 --
 -- Your thinking:
 --
+
+select * from menuitems
+where price < 10

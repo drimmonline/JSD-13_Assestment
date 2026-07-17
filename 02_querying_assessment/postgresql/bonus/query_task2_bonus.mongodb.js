@@ -18,3 +18,26 @@
 //
 // Your thinking:
 //
+
+use("chrome-burger-db");
+
+db.staff.find({ role: "Cook" });
+
+db.staff.aggregate([
+  {
+    $group: {
+      _id: "$_id",
+      first_name: { $first: "$first_name" },
+      last_name: { $first: "$last_name" },
+      role: { $first: "Cook" },
+    },
+  },
+  {
+    $project: {
+      _id: 0,
+      first_name: 1,
+      last_name: 1,
+      role: 1,
+    },
+  },
+]);

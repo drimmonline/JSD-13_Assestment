@@ -18,4 +18,23 @@
 // Write in English or Thai. Do not skip this step.
 //
 // Your thinking:
+// ใช้ ตาราง order และ aggregate ในการชื่อผลลัพท์ที่แสดงใหม่ โดบ$project จะจัดfield ที่เราต้องการจะเอามา โชว์ โดยผม group total revenue โดยใช้ sum
 //
+
+use("chrome-burger-db");
+
+db.orders.find();
+db.orders.aggregate([
+  {
+    $group: {
+      _id: null,
+      total_revenue: { $sum: "$total_price" },
+    },
+  },
+  {
+    $project: {
+      _id: 0,
+      total_revenue: 1,
+    },
+  },
+]);

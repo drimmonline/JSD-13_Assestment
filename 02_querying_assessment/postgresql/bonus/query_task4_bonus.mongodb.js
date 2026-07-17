@@ -19,4 +19,21 @@
 // Write in English or Thai. Do not skip this step.
 //
 // Your thinking:
+//ผมจะ aggregate  collection ingredients โดยใช้ lookup ผ่าน suppliers_id  แต่ข้อมูล return ออกมาเป็น [] ใน field ใหม่ เลยไม่ได้ทำต่อครับ
+
 //
+
+use("chrome-burger-db");
+// db.ingredients.find();
+// db.suppliers.find();
+
+db.ingredients.aggregate([
+  {
+    $lookup: {
+      from: "suppliers",
+      localField: "supplier_id",
+      foreignField: "_id",
+      as: "supplier_info",
+    },
+  },
+]);
