@@ -26,12 +26,13 @@ use("chrome-burger-db");
 
 // db.getCollection("orders");
 
-// db.orders.find();
+db.orders.find();
 
 db.orders.aggregate([
   {
     $match: {
-      _id: ObjectId("634d00000000000000000041"),
+      "staff.first_name": "Jane",
+      "staff.last_name": "Doe",
     },
   },
   {
