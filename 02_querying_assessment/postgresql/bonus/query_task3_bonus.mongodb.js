@@ -19,8 +19,8 @@
 // Write in English or Thai. Do not skip this step.
 //
 // Your thinking:
-//ผมจะ aggregate  collection order โดยใช้ lookup แต่ข้อมูล return ออกมาเป็น [] ใน field ใหม่ เลยไม่ได้ทำต่อครับ
-//
+// lookup หาค่า จาก FK ใน orders collection จะได้ staff_full_detail จากนั้น unwind ข้อมูลจาก array เป็น object แล้ว
+//จากนั้น sumtotal order แล้วเอาค่าไปจัดใน project
 use("chrome-burger-db");
 db.orders.find();
 
@@ -31,6 +31,31 @@ db.orders.aggregate([
       localField: "staff.staff_id",
       foreignField: "_id",
       as: "staff_full_details",
+    },
+  },
+  {
+    $unwind: "$staff_full_details",
+  },
+  {
+    $group: {
+      _id: {
+        first_name: "$staff_full_details.first_name",
+        last_name: "$staff_full_details.last_name",
+      },
+      total_orders: { $sum: 1 },
+    },
+  },
+  {
+    $sort: {
+      total_orders: -1,
+    },
+  },
+  {
+    $project: {
+      _id: 0,
+      first_name: "$_id.first_name",
+      last_name: "$_id.last_name",
+      total_orders: { $toInt: "$total_orders" },
     },
   },
 ]);

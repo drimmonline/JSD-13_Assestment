@@ -19,7 +19,8 @@
 // Write in English or Thai. Do not skip this step.
 //
 // Your thinking:
-//ผมจะ aggregate  collection ingredients โดยใช้ lookup ผ่าน suppliers_id  แต่ข้อมูล return ออกมาเป็น [] ใน field ใหม่ เลยไม่ได้ทำต่อครับ
+//ผมจะ aggregate  collection ingredients โดยใช้ lookup ผ่าน suppliers_id
+//  พอ ได้ค่าข้อมูลกลับมาเป็น [] ใช้ unwind ในการเปลี่ยนค่าเป็น object เพื่อง่ายต่อการเข้นถึงข้อมูลจากนั้น project ข้อมูลเฉพาะที่เราต้องการ
 
 //
 
@@ -34,6 +35,21 @@ db.ingredients.aggregate([
       localField: "supplier_id",
       foreignField: "_id",
       as: "supplier_info",
+    },
+  },
+  {
+    $unwind: "$supplier_info",
+  },
+  {
+    $match: {
+      "supplier_info.name": "Freshest Farm Produce",
+    },
+  },
+  {
+    $project: {
+      _id: 0,
+      name: 1,
+      supplier_name: "$supplier_info.name",
     },
   },
 ]);
