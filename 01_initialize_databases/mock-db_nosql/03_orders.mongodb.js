@@ -3,7 +3,7 @@ use("chrome-burger-db");
 
 // This command will delete all existing documents in the 'orders' collection.
 // Comment it out if you want to append the data instead of replacing it.
-db.getCollection("orders").deleteMany({});
+// db.getCollection("orders").deleteMany({});
 
 // Insert the documents into the 'orders' collection.
 db.getCollection("orders").insertMany([

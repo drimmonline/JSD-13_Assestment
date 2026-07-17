@@ -3,7 +3,7 @@ use("chrome-burger-db");
 
 // This command will delete all existing documents in the 'suppliers' collection.
 // Comment it out if you want to append the data instead of replacing it.
-db.getCollection("suppliers").deleteMany({});
+// db.getCollection("suppliers").deleteMany({});
 
 // Insert the documents into the 'suppliers' collection.
 db.getCollection("suppliers").insertMany([
